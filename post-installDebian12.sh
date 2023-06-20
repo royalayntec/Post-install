@@ -71,7 +71,7 @@ if [[ -n "$selection" ]]; then
 	rm steam.deb
 	;;
       "Codecs multimedia")
-      	sudo apt install -y w64codecs libdvdcss2 gstreamer1.0-libav
+      	sudo apt install -y gstreamer1.0-libav
       	;;
       *)
         sudo apt install -y "$program"
