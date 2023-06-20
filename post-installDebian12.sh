@@ -1,9 +1,11 @@
 #!/bin/bash
 
 # Instala Zenity si no está instalado
+sudo apt install -y git aptitude synaptic curl gdebi synaptic make automake cmake autoconf 
+
 if ! command -v zenity >/dev/null 2>&1; then
   sudo apt update && sudo apt upgrade -y
-  sudo apt install -y zenity gdebi synaptic make automake cmake autoconf git aptitude synaptic curl
+  sudo apt install -y zenity 
 fi
 
 # Función para mostrar el menú de selección
