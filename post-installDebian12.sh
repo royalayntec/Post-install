@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Instala Zenity si no está instalado
+sudo apt update && sudo apt upgrade -y
 sudo apt install -y git aptitude synaptic curl gdebi synaptic make automake cmake autoconf 
 
 if ! command -v zenity >/dev/null 2>&1; then
