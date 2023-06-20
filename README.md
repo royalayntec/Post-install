@@ -1,4 +1,2 @@
 # Post-install
-su
-wget https://is.gd/debian12
-./post-installDebian12.sh
+wget https://is.gd/debian12 && su && ./post-installDebian12.sh
