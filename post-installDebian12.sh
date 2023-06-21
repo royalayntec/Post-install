@@ -13,8 +13,8 @@ fi
 show_menu() {
   zenity --list --checklist --title="Selección de programas" --text="Selecciona los programas que deseas instalar:" \
     --column="Instalar" --column="Programa" --column="Descripción" \
-    FALSE "firmware-linux-nonfree" "Firmware no libre para Linux" \
     FALSE "agregar-usuario-sudo" "Agregar usuario al grupo sudo" \
+    FALSE "Repositorio-nonfree" "Firmware no libre para Linux" \
     FALSE "instalador-flatpak" "Instalador de Flatpak" \
     FALSE "Compilación de software" "Herramientas de compilación y gestión." \
     FALSE "wine" "permite ejecutar aplicaciones de Windows" \
@@ -49,7 +49,14 @@ if [[ -n "$selection" ]]; then
   sudo apt update
   for program in "${selection[@]}"; do
     case $program in
-      "firmware-linux-nonfree")
+      "Repositorio-nonfree")
+      	sudo sh -c 'echo "deb http://deb.debian.org/debian bookworm non-free non-free-firmware
+		deb-src http://deb.debian.org/debian bookworm non-free non-free-firmware
+		deb http://deb.debian.org/debian-security bookworm-security non-free non-free-firmware
+		deb-src http://deb.debian.org/debian-security bookworm-security non-free non-free-firmware
+		deb http://deb.debian.org/debian bookworm-updates non-free non-free-firmware
+		deb-src http://deb.debian.org/debian bookworm-updates non-free non-free-firmware" > /etc/apt/sources.list.d/repositorios.list'
+  	sudo apt update
         sudo apt install -y firmware-linux-nonfree
         ;;
       "agregar-usuario-sudo")
@@ -62,6 +69,13 @@ if [[ -n "$selection" ]]; then
       "Compilación de software")
       	sudo apt install -y build-essential make automake cmake autoconf git wget
       	;;
+      "Compilación de software")
+	sudo apt install -y curl
+	sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+	echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg  arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+	sudo apt update
+	sudo apt install -y brave-browser
+        ;;
       "steam")
       	wget https://cdn.akamai.steamstatic.com/client/installer/steam.deb
 	sudo dpkg --add-architecture i386
