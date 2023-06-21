@@ -74,7 +74,7 @@ if [[ -n "$selection" ]]; then
         sudo apt install -y build-essential make automake cmake autoconf git wget
         ;;
       "Compresores-archivos")
-        sudo apt install p7zip-full p7zip-rar rar unrar zip unzip unace bzip2 arj lzip lzma gzip unar
+        sudo apt install -y p7zip-full p7zip-rar rar unrar zip unzip unace bzip2 arj lzip lzma gzip unar
         ;;
       "brave-browser")
         sudo apt install -y curl
