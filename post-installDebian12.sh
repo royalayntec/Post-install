@@ -16,12 +16,12 @@ show_menu() {
     FALSE "agregar-usuario-sudo" "Agregar usuario al grupo sudo" \
     FALSE "Repositorio-nonfree" "Firmware no libre para Linux" \
     FALSE "instalador-flatpak" "Instalador de Flatpak" \
-    FALSE "Compilación de software" "Herramientas de compilación y gestión." \
+    FALSE "Compilación de software" "build-essential make automake cmake autoconf git" \
     FALSE "wine" "permite ejecutar aplicaciones de Windows" \
     FALSE "gparted" "Editor de particiones" \
     FALSE "htop" "Monitor de sistema interactivo" \
     FALSE "geany" "Editor de texto ligero" \
-    FALSE "leafpad" "Editor de texto básico" \
+    FALSE "mousepad" "Editor de texto básico" \
     FALSE "gimp" "Editor de imágenes" \
     FALSE "inkscape" "Editor de gráficos vectoriales" \
     FALSE "filezilla" "Cliente FTP" \
@@ -38,6 +38,8 @@ show_menu() {
     FALSE "mpv" "Reproductor multimedia basado en MPlayer" \
     FALSE "vokoscreen" "Grabador de pantalla" \
     FALSE "steam" "Plataforma de juegos" \
+    FALSE "Driver-Nvidia" "Controladores de gráficos Nvidia" \
+    FALSE "Driver-AMD" "Controladores de gráficos Nvidia" \
     --separator="|" --width=600 --height=600
 }
 
@@ -86,6 +88,15 @@ if [[ -n "$selection" ]]; then
 	;;
       "Codecs multimedia")
       	sudo apt install -y gstreamer1.0-libav
+      	;;
+        "Driver-Nvidia")
+      	sudo apt install -y nvidia-detect
+        recommended_driver=$(sudo nvidia-detect | grep "recommended" -A1 | tail -n1 | awk '{print $NF}')
+        if [[ -n "$recommended_driver" ]]; then
+        sudo apt install -y $recommended_driver
+      	;;
+        "Driver-AMD")
+      	sudo apt install -y firmware-linux-nonfree libgl1-mesa-dri xserver-xorg-video-ati
       	;;
       *)
         sudo apt install -y "$program"
