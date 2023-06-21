@@ -17,6 +17,7 @@ show_menu() {
     FALSE "Repositorio-nonfree" "Firmware no libre para Linux" \
     FALSE "instalador-flatpak" "Instalador de Flatpak" \
     FALSE "Compilación de software" "build-essential make automake cmake autoconf git" \
+    FALSE "Compresores-archivos" "p7zip-full p7zip-rar rar unrar zip unzip unace, etc..." \
     FALSE "wine" "permite ejecutar aplicaciones de Windows" \
     FALSE "gparted" "Editor de particiones" \
     FALSE "htop" "Monitor de sistema interactivo" \
@@ -27,6 +28,7 @@ show_menu() {
     FALSE "filezilla" "Cliente FTP" \
     FALSE "transmission-gtk" "Cliente BitTorrent" \
     FALSE "brave-browser" "Navegador web Brave" \
+    FALSE "skype" "comunicaciones de texto, voz y vídeo" \
     FALSE "default-jdk" "Java Development Kit (JDK)" \
     FALSE "ffmpeg" "Conversor y manipulador de multimedia" \
     FALSE "vlc" "Reproductor multimedia" \
@@ -39,7 +41,7 @@ show_menu() {
     FALSE "vokoscreen" "Grabador de pantalla" \
     FALSE "steam" "Plataforma de juegos" \
     FALSE "Driver-Nvidia" "Controladores de gráficos Nvidia" \
-    FALSE "Driver-AMD" "Controladores de gráficos Nvidia" \
+    FALSE "Driver-AMD" "Controladores de gráficos AMD" \
     --separator="|" --width=600 --height=600
 }
 
@@ -71,12 +73,20 @@ if [[ -n "$selection" ]]; then
       "Compilación de software")
         sudo apt install -y build-essential make automake cmake autoconf git wget
         ;;
+      "Compresores-archivos")
+        sudo apt install p7zip-full p7zip-rar rar unrar zip unzip unace bzip2 arj lzip lzma gzip unar
+        ;;
       "brave-browser")
         sudo apt install -y curl
         sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
         echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg  arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
         sudo apt update
         sudo apt install -y brave-browser
+        ;;
+      "skype")
+        wget https://go.skype.com/skypeforlinux-64.deb
+        sudo apt install ./skypeforlinux-64.deb -y
+        rm skypeforlinux-64.deb
         ;;
       "steam")
         wget https://cdn.akamai.steamstatic.com/client/installer/steam.deb
