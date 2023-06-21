@@ -52,13 +52,13 @@ if [[ -n "$selection" ]]; then
   for program in "${selection[@]}"; do
     case $program in
       "Repositorio-nonfree")
-      	sudo sh -c 'echo "deb http://deb.debian.org/debian bookworm non-free non-free-firmware
-		deb-src http://deb.debian.org/debian bookworm non-free non-free-firmware
-		deb http://deb.debian.org/debian-security bookworm-security non-free non-free-firmware
-		deb-src http://deb.debian.org/debian-security bookworm-security non-free non-free-firmware
-		deb http://deb.debian.org/debian bookworm-updates non-free non-free-firmware
-		deb-src http://deb.debian.org/debian bookworm-updates non-free non-free-firmware" > /etc/apt/sources.list.d/repositorios.list'
-  	sudo apt update
+        sudo sh -c 'echo "deb http://deb.debian.org/debian bookworm non-free non-free-firmware
+        deb-src http://deb.debian.org/debian bookworm non-free non-free-firmware
+        deb http://deb.debian.org/debian-security bookworm-security non-free non-free-firmware
+        deb-src http://deb.debian.org/debian-security bookworm-security non-free non-free-firmware
+        deb http://deb.debian.org/debian bookworm-updates non-free non-free-firmware
+        deb-src http://deb.debian.org/debian bookworm-updates non-free non-free-firmware" > /etc/apt/sources.list.d/repositorios.list'
+        sudo apt update
         sudo apt install -y firmware-linux-nonfree
         ;;
       "agregar-usuario-sudo")
@@ -69,36 +69,36 @@ if [[ -n "$selection" ]]; then
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
         ;;
       "Compilación de software")
-      	sudo apt install -y build-essential make automake cmake autoconf git wget
-      	;;
-      "Compilación de software")
-	sudo apt install -y curl
-	sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-	echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg  arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-	sudo apt update
-	sudo apt install -y brave-browser
+        sudo apt install -y build-essential make automake cmake autoconf git wget
+        ;;
+      "brave-browser")
+        sudo apt install -y curl
+        sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+        echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg  arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+        sudo apt update
+        sudo apt install -y brave-browser
         ;;
       "steam")
-      	wget https://cdn.akamai.steamstatic.com/client/installer/steam.deb
-	sudo dpkg --add-architecture i386
-	sudo apt install -y libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 python-apt libgl1-nvidia-glx
-	sudo apt update
-	sudo dpkg -i steam.deb
-	rm steam.deb
-	;;
+        wget https://cdn.akamai.steamstatic.com/client/installer/steam.deb
+        sudo dpkg --add-architecture i386
+        sudo apt install -y libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 python-apt libgl1-nvidia-glx
+        sudo apt update
+        sudo dpkg -i steam.deb
+        rm steam.deb
+        ;;
       "Codecs multimedia")
-      	sudo apt install -y gstreamer1.0-libav
-      	;;
-        "Driver-Nvidia")
+        sudo apt install -y gstreamer1.0-libav
+        ;;
+      "Driver-Nvidia")
         sudo apt install -y nvidia-detect
         recommended_driver=$(sudo nvidia-detect | grep "recommended" -A1 | tail -n1 | awk '{print $NF}')
         if [[ -n "$recommended_driver" ]]; then
           sudo apt install -y "$recommended_driver"
         fi
-      	;;
-        "Driver-AMD")
-      	sudo apt install -y firmware-linux-nonfree libgl1-mesa-dri xserver-xorg-video-ati
-      	;;
+        ;;
+      "Driver-AMD")
+        sudo apt install -y firmware-linux-nonfree libgl1-mesa-dri xserver-xorg-video-ati
+        ;;
       *)
         sudo apt install -y "$program"
         ;;
