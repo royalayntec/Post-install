@@ -90,10 +90,11 @@ if [[ -n "$selection" ]]; then
       	sudo apt install -y gstreamer1.0-libav
       	;;
         "Driver-Nvidia")
-      	sudo apt install -y nvidia-detect
+        sudo apt install -y nvidia-detect
         recommended_driver=$(sudo nvidia-detect | grep "recommended" -A1 | tail -n1 | awk '{print $NF}')
         if [[ -n "$recommended_driver" ]]; then
-        sudo apt install -y $recommended_driver
+          sudo apt install -y "$recommended_driver"
+        fi
       	;;
         "Driver-AMD")
       	sudo apt install -y firmware-linux-nonfree libgl1-mesa-dri xserver-xorg-video-ati
