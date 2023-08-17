@@ -81,10 +81,10 @@ if [[ -n "$selection" ]]; then
       "Wine")
       	sudo dpkg --add-architecture i386 
       	sudo mkdir -pm755 /etc/apt/keyrings
-		sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
-		sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
-		sudo apt update
-		sudo apt install --install-recommends winehq-stable
+	sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+	sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
+	sudo apt update
+	sudo apt install --install-recommends winehq-stable
       	;;
       "Gnome Boxes")
       	sudo apt install -y gnome-boxes qemu-kvm libvirt0 virt-manager bridge-utils
@@ -100,21 +100,25 @@ if [[ -n "$selection" ]]; then
       	;;
       "Obs Studio")
       	sudo add-apt-repository ppa:obsproject/obs-studio
-		sudo apt update
-		sudo apt install -y obs-studio
+	sudo apt update
+	sudo apt install -y obs-studio
       	;;
       "Photoshop")
+        sudo apt update && sudo apt upgrade -y
+	sudo apt install -y zenity gdebi synaptic make automake cmake autoconf git aptitude synaptic curl
       	cd /tmp/
       	git clone https://gitlab.com/csmarckitus1/photoshop.git
       	cd photoshop
-		make
-		./Photoshop2020
+	make
+	./Photoshop2020
       	;;
       "Ilustrator")
-		cd /tmp/
+	sudo apt update && sudo apt upgrade -y
+	sudo apt install -y zenity gdebi synaptic make automake cmake autoconf git aptitude synaptic curl
+ 	cd /tmp/
       	wget https://github.com/LinSoftWin/Illustrator-CC-2021-Linux/releases/download/1.0.0/install-illustrator-2021.sh
       	chmod +x install-illustrator-2021.sh
-		sh install-illustrator-2021.sh
+	sh install-illustrator-2021.sh
       	;;
       *)
         sudo apt install -y "$program"
