@@ -27,6 +27,7 @@ show_menu() {
     FALSE "inkscape" "Editor de gráficos vectoriales" \
     FALSE "filezilla" "Cliente FTP" \
     FALSE "transmission-gtk" "Cliente BitTorrent" \
+    FALSE "Google Chrome" "Navegador web Chrome de Google" \
     FALSE "brave-browser" "Navegador web Brave" \
     FALSE "skype" "comunicaciones de texto, voz y vídeo" \
     FALSE "default-jdk" "Java Development Kit (JDK)" \
@@ -76,6 +77,12 @@ if [[ -n "$selection" ]]; then
       "Compresores-archivos")
         sudo apt install -y p7zip-full p7zip-rar rar unrar zip unzip unace bzip2 arj lzip lzma gzip unar
         ;;
+      "Google Chrome")
+      	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      	sudo dpkg -i google-chrome-stable_current_amd64.deb
+      	sudo apt install -f -y
+      	rm *.deb
+      	;;
       "brave-browser")
         sudo apt install -y curl
         sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
