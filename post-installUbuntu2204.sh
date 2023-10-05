@@ -27,7 +27,7 @@ show_menu() {
     FALSE "transmission-gtk" "Cliente BitTorrent" \
     FALSE "Gnome Boxes" "acceder a sistemas remotos o virtuales" \
     FALSE "Google Chrome" "Navegador web Chrome de Google" \
-    FALSE "brave-browser" "Navegador web Brave" \
+    FALSE "Brave-browser" "Navegador web Brave" \
     FALSE "default-jdk" "Java Development Kit (JDK)" \
     FALSE "ffmpeg" "Conversor y manipulador de multimedia" \
     FALSE "vlc" "Reproductor multimedia" \
@@ -95,6 +95,13 @@ if [[ -n "$selection" ]]; then
       	sudo apt install -f -y
       	rm *.deb
       	;;
+      "Brave-browser")
+        sudo apt install -y curl
+        sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+        echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg  arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+        sudo apt update
+        sudo apt install -y brave-browser
+        ;;
       "kdenlive")
       	sudo apt install -y kdenlive mediainfo
       	;;
