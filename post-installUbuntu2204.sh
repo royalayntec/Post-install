@@ -9,7 +9,7 @@ fi
 
 # Función para mostrar el menú de selección de secciones
 show_section_menu() {
-  zenity --list --checklist --title="Ubuntu 23.10" --text="Selecciona los programas que deseas instalar por sección:" \
+  zenity --list --checklist --title="Ubuntu 24.04" --text="Selecciona los programas que deseas instalar por sección:" \
     --column="Marcar" --column="Sección" \
     FALSE "🛠️ Accesorios" \
     FALSE "🎨 Graficos" \
