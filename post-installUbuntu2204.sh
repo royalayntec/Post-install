@@ -290,23 +290,23 @@ if [[ -n "$selection" ]]; then
             "Blender")
               sudo apt install -y blender              
               ;;  
-		    "Photoshop")
-			  sudo apt update && sudo apt upgrade -y
-		      sudo apt install -y zenity gdebi synaptic make automake cmake autoconf git aptitude synaptic curl
-			  cd /tmp/
-			  git clone https://gitlab.com/csmarckitus1/photoshop.git
-			  cd photoshop
-		      make
-		     ./Photoshop2020
-			;;
-		   "Ilustrator")
-		     sudo apt update && sudo apt upgrade -y
-		     sudo apt install -y zenity gdebi synaptic make automake cmake autoconf git aptitude synaptic curl
-		     cd /tmp/
-			 wget https://github.com/LinSoftWin/Illustrator-CC-2021-Linux/releases/download/1.0.0/install-illustrator-2021.sh
-			 chmod +x install-illustrator-2021.sh
-		     sh install-illustrator-2021.sh
-			 ;;
+	    "Photoshop")
+		sudo apt update && sudo apt upgrade -y
+		sudo apt install -y zenity gdebi synaptic make automake cmake autoconf git aptitude synaptic curl
+		cd /tmp/
+		git clone https://gitlab.com/csmarckitus1/photoshop.git
+		cd photoshop
+		make
+		./Photoshop2020
+		;;
+	    "Ilustrator")
+		sudo apt update && sudo apt upgrade -y
+		sudo apt install -y zenity gdebi synaptic make automake cmake autoconf git aptitude synaptic curl
+		cd /tmp/
+		wget https://github.com/LinSoftWin/Illustrator-CC-2021-Linux/releases/download/1.0.0/install-illustrator-2021.sh
+		chmod +x install-illustrator-2021.sh
+		sh install-illustrator-2021.sh
+		;;
             "LibreSprite - flatpak")
               sudo apt install -y flatpak
               sudo apt install -y gnome-software-plugin-flatpak
@@ -335,9 +335,9 @@ if [[ -n "$selection" ]]; then
               sudo apt install -y vlc
               ;;
             "Spotify")
-			  curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-			  echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-			  sudo apt-get update && sudo apt-get install spotify-client
+		curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+		echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+		sudo apt-get update && sudo apt-get install spotify-client
               ;;
             "Audacity")
               sudo apt install -y audacity
@@ -345,14 +345,14 @@ if [[ -n "$selection" ]]; then
             "Codecs multimedia")
       	     sudo apt install -y w64codecs libdvdcss2 gstreamer1.0-libav
       	      ;;
-			"kdenlive")
-			  sudo apt install -y kdenlive mediainfo
-			  ;;
-		    "Obs Studio")
-			  sudo add-apt-repository ppa:obsproject/obs-studio
-		      sudo apt update
-			  sudo apt install -y obs-studio
-			  ;;
+	    "kdenlive")
+	     sudo apt install -y kdenlive mediainfo
+	      ;;
+	    "Obs Studio")
+	      sudo add-apt-repository ppa:obsproject/obs-studio
+	      sudo apt update
+	      sudo apt install -y obs-studio
+	      ;;
             "Soundconverter")
               sudo apt install -y soundconverter
               ;;
@@ -537,15 +537,14 @@ if [[ -n "$selection" ]]; then
               ;;
              "Dolphin")
               sudo apt-add-repository ppa:dolphin-emu/ppa
-			  sudo apt update
-			  sudo apt install -y dolphin-emu
+	      sudo apt update
+	      sudo apt install -y dolphin-emu
               ;;
              "Citra - flatpak")
-              cd /tmp/
-              wget https://github.com/citra-emu/citra-web/releases/download/2.0/citra-setup-linux
-              chmod +x citra-setup-linux
-              ./citra-setup-linux
-              rm citra-setup-linux
+              sudo apt install -y flatpak
+              sudo apt install -y gnome-software-plugin-flatpak
+              flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+              flatpak install -y org.citra_emu.citra
               ;;
             "Cemu - flatpak")
               sudo apt install -y flatpak
